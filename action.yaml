@@ -42,7 +42,7 @@ runs:
       shell: bash
 
     - name: Install 'ripgrep'
-      run: apt-get install ripgrep
+      run: sudo apt-get install ripgrep
       shell: bash
 
     - name: Run 'action hooks'
