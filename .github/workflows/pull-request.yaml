@@ -5,9 +5,9 @@ jobs:
       - name: Run 'pre-commit' hooks
         uses: dycw/action-pre-commit@latest
         with:
-          repos: |
+          repos: |-
             pre-commit/pre-commit-hooks
-          hooks: |
+          hooks: |-
             nitpick
 name: pull-request
 "on":
