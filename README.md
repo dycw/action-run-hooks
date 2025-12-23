@@ -1,3 +1,3 @@
-# `template-action`
+# `action-pre-commit`
 
-Template for Python actions
+Run 'pre-commit' hooks
