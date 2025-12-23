@@ -1,5 +1,5 @@
-name: abc
-description: description
+name: run-hooks
+description: Run 'pre-commit' hooks
 
 branding:
   icon: activity
@@ -9,9 +9,12 @@ inputs:
   token:
     description: GitHub Personal Access Token
     default: ${{github.token}}
-  flag:
-    description: Example flag
-    default: false
+  repos:
+    description: The repos whos hooks are to be run
+    default:
+  hooks:
+    description: The hooks to be run
+    default:
 
 runs:
   using: composite
@@ -26,13 +29,32 @@ runs:
       with:
         python-version: 3.13
 
+    - name: Install 'pre-commit'
+      run: uv tool install --reinstall pre-commit
+      shell: bash
+
     - name: Install 'dycw-actions'
       run: uv tool install --reinstall dycw-actions
       shell: bash
 
-    - name: Run 'action abc'
-      env:
-        TOKEN: ${{inputs.token}}
-        FLAG: ${{inputs.flag}}
-      run: uv tool run --from dycw-actions --isolated action abc
+    - name: Run 'action hooks'
+      run: |
+        set -euo pipefail
+        args=(uv tool run --from dycw-actions --isolated hooks)
+        IFS=$'\n' read -r -d '' -a REPOS <<< "${{inputs.repos}}"$'\0'
+        for repo in "${REPOS[@]}"; do
+          if [ -n "${repo}" ]; then
+            args+=(--repo "${repo}")
+          fi
+        done
+        IFS=$'\n' read -r -d '' -a HOOKS <<< "${{inputs.hooks}}"$'\0'
+        for hook in "${HOOKS[@]}"; do
+          if [ -n "${hook}" ]; then
+            args+=(--hook "${hook}")
+          fi
+        done
+        echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
+        printf '  %q' "${args[@]}"
+        echo
+        "${args[@]}"
       shell: bash
