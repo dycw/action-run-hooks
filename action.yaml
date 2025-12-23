@@ -29,6 +29,10 @@ runs:
       with:
         python-version: 3.13
 
+    - name: Install 'bump-my-version'
+      run: uv tool install --reinstall bump-my-version
+      shell: bash
+
     - name: Install 'pre-commit'
       run: uv tool install --reinstall pre-commit
       shell: bash
