@@ -41,6 +41,10 @@ runs:
       run: uv tool install --reinstall dycw-actions
       shell: bash
 
+    - name: Install 'ripgrep'
+      run: apt-get install ripgrep
+      shell: bash
+
     - name: Run 'action hooks'
       env:
         TOKEN: ${{inputs.token}}
