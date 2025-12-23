@@ -40,7 +40,7 @@ runs:
     - name: Run 'action hooks'
       run: |
         set -euo pipefail
-        args=(uv tool run --from dycw-actions --isolated hooks)
+        args=(uv tool run --from dycw-actions --isolated action hooks)
         IFS=$'\n' read -r -d '' -a REPOS <<< "${{inputs.repos}}"$'\0' || true
         for repo in "${REPOS[@]}"; do
           if [ -n "${repo}" ]; then
