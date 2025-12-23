@@ -38,23 +38,9 @@ runs:
       shell: bash
 
     - name: Run 'action hooks'
-      run: |
-        set -euo pipefail
-        args=(uv tool run --from dycw-actions --isolated action hooks)
-        IFS=$'\n' read -r -d '' -a REPOS <<< "${{inputs.repos}}"$'\0' || true
-        for repo in "${REPOS[@]}"; do
-          if [ -n "${repo}" ]; then
-            args+=(--repo "${repo}")
-          fi
-        done
-        IFS=$'\n' read -r -d '' -a HOOKS <<< "${{inputs.hooks}}"$'\0' || true
-        for hook in "${HOOKS[@]}"; do
-          if [ -n "${hook}" ]; then
-            args+=(--hook "${hook}")
-          fi
-        done
-        echo "[$(date +'%Y-%m-%d %H:%M:%S')] Running:"
-        printf '%q' "${args[@]}"
-        echo
-        "${args[@]}"
+      env:
+        TOKEN: ${{inputs.token}}
+        REPOS: ${{inputs.repos}}
+        HOOKS: ${{inputs.hooks}}
+      run: uv tool run --from dycw-actions --isolated action hooks
       shell: bash
