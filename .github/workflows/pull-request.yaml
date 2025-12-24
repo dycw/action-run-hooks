@@ -4,8 +4,6 @@ jobs:
     steps:
       - name: Run 'pre-commit' hooks
         uses: dycw/action-pre-commit@latest
-        env:
-          CI: "1"
         with:
           repos: |-
             dycw/pre-commit-hook-nitpick
