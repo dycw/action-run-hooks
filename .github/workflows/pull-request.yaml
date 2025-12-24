@@ -6,12 +6,8 @@ jobs:
         uses: dycw/action-pre-commit@latest
         with:
           repos: |-
-            pre-commit/pre-commit-hooks
             dycw/pre-commit-hook-nitpick
-          hooks: |-
-            nitpick
-            detect-private-key
-            pretty-format-json
+            pre-commit/pre-commit-hooks
 name: pull-request
 "on":
   pull_request:
