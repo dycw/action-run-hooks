@@ -9,6 +9,9 @@ inputs:
   token-checkout:
     description: Personal access token (PAT) used to fetch the repository
     default: ${{github.token}}
+  submodules:
+    description: Whether to checkout submodules
+    default:
   token-uv:
     description: Personal access token (PAT) used to download uv
     default: ${{github.token}}
@@ -29,6 +32,7 @@ runs:
       uses: actions/checkout@v6
       with:
         token: ${{inputs.token-checkout}}
+        submodules: ${{inputs.submodules}}
 
     - name: Install 'uv'
       uses: astral-sh/setup-uv@v7
