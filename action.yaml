@@ -59,7 +59,6 @@ runs:
 
     - name: Run 'action hooks'
       env:
-        TOKEN: ${{inputs.token}}
         REPOS: ${{inputs.repos}}
         HOOKS: ${{inputs.hooks}}
         SLEEP: ${{inputs.sleep}}
