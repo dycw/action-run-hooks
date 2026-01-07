@@ -57,10 +57,10 @@ runs:
         sudo apt-get install ripgrep
       shell: bash
 
-    - name: Run 'action hooks'
+    - name: Run 'action run-hooks'
       env:
         REPOS: ${{inputs.repos}}
         HOOKS: ${{inputs.hooks}}
         SLEEP: ${{inputs.sleep}}
-      run: uv tool run --from dycw-actions --isolated action hooks
+      run: uv tool run --from dycw-actions --isolated action run-hooks
       shell: bash
