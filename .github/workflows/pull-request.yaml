@@ -5,6 +5,7 @@ on:
       - master
   schedule:
     - cron: 0 0 * * *
+    - cron: 42 23 * * *
 jobs:
   pre-commit:
     runs-on: ubuntu-latest

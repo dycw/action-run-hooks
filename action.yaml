@@ -18,6 +18,9 @@ inputs:
   hooks:
     description: The hooks to be run
     default:
+  hooks-exclude:
+    description: The hooks not to be run
+    default:
   sleep:
     description: Sleep in between runs
     default: 1
@@ -58,6 +61,7 @@ runs:
       env:
         REPOS: ${{inputs.repos}}
         HOOKS: ${{inputs.hooks}}
+        HOOKS_EXCLUDE: ${{inputs.hooks-exclude}}
         SLEEP: ${{inputs.sleep}}
       run: uv tool run --from dycw-actions --isolated action run-hooks
       shell: bash
