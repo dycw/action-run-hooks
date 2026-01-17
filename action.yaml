@@ -51,7 +51,7 @@ runs:
       shell: bash
 
     - name: Install 'ripgrep'
-      run: uv tool run --from dycw-installer@latest --isolated --resolution highest --prerelease disallow installer ripgrep
+      run: uv tool run --from dycw-installer[cli]@latest --isolated --resolution highest --prerelease disallow cli ripgrep
       shell: bash
 
     - name: Run 'action run-hooks'
@@ -60,5 +60,5 @@ runs:
         HOOKS: ${{inputs.hooks}}
         HOOKS_EXCLUDE: ${{inputs.hooks-exclude}}
         SLEEP: ${{inputs.sleep}}
-      run: uv tool run --from dycw-actions@latest --isolated --resolution highest --prerelease disallow action run-hooks
+      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow cli run-hooks
       shell: bash
