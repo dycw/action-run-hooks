@@ -43,15 +43,15 @@ runs:
         github-token: ${{inputs.token-github}}
 
     - name: Install 'bump-my-version'
-      run: uv tool install --resolution highest --prerelease disallow bump-my-version@latest
+      run: uv tool install --resolution highest --prerelease disallow --managed-python bump-my-version@latest
       shell: bash
 
     - name: Install 'pre-commit'
-      run: uv tool install --resolution highest --prerelease disallow pre-commit@latest
+      run: uv tool install --resolution highest --prerelease disallow --managed-python pre-commit@latest
       shell: bash
 
     - name: Install 'ripgrep'
-      run: uv tool run --from dycw-installer[cli]@latest --isolated --resolution highest --prerelease disallow cli ripgrep
+      run: uv tool run --from dycw-installer[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli ripgrep
       shell: bash
 
     - name: Run 'action run-hooks'
@@ -60,5 +60,5 @@ runs:
         HOOKS: ${{inputs.hooks}}
         HOOKS_EXCLUDE: ${{inputs.hooks-exclude}}
         SLEEP: ${{inputs.sleep}}
-      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow cli run-hooks
+      run: uv tool run --from dycw-actions[cli]@latest --isolated --resolution highest --prerelease disallow --managed-python cli run-hooks
       shell: bash
